@@ -2,14 +2,15 @@ const express = require("express");
 const app = express();
 const port = process.env.port || 5000;
 require("dotenv").config();
-const { MongoClient, ServerApiVersion } = require("mongodb");
 
 // Middleware
 app.use(express.json());
 
-// console.log(process.env.DB_SECRET);
+// Mongodb
+console.log(process.env.DB_USER, process.env.DB_SECRET);
 
-const uri = `mongodb+srv://FSCafe-fullstack-project:${process.env.DB_SECRET}@atlascluster.p2atehq.mongodb.net/?retryWrites=true&w=majority`;
+const { MongoClient, ServerApiVersion } = require("mongodb");
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_SECRET}@cluster0.m38robg.mongodb.net/?retryWrites=true&w=majority`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
